@@ -156,5 +156,10 @@ boolean set=false;
     }
 
 
-
+    public void reset(View view) {
+        can1.getText().clear();
+        can2.getText().clear();
+        can3.getText().clear();
+        can4.getText().clear();
+    }
 }

@@ -66,7 +66,7 @@ String reg_no,post,result_to_print,winn_result,url_result="http://vijai1.eu5.org
             try {
                 json = array.getJSONObject(i);
                 int j=i+1;
-                result_to_print+= "\n " + j + "." + json.getString("name") + json.getInt("reg_no") + "  " + json.getInt("vote_count");
+                result_to_print+= "\n " + j + "." + json.getString("name") +"   "+ json.getInt("reg_no") + "   " + json.getInt("vote_count");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -75,14 +75,14 @@ String reg_no,post,result_to_print,winn_result,url_result="http://vijai1.eu5.org
 
         try {
             JSONObject json = array.getJSONObject(0);
-            winn_result+=json.getString("name")+""+json.getInt("reg_no");
+            winn_result+=json.getString("name")+"  "+json.getInt("reg_no");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         result_winner=winn_result.substring(4,winn_result.length());
         result_all=result_to_print.substring(result_to_print.indexOf('\n')+1);
         Log.d("winnn",result_winner);
-        winner.setText(result_winner);
+        winner.setText("The winner is :-   "+result_winner);
 
         all.setText(result_all+"\n\n");
 

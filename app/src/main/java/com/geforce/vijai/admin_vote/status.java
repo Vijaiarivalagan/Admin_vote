@@ -18,8 +18,8 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 public class status extends AppCompatActivity {
-TextView status;
-    String reg_no,post,status_voted,url_status="http://vijai1.eu5.org/sona/polling_status.php?stu_status=1";
+TextView status,dept_post;
+    String reg_no,post,dept,url_status="http://vijai1.eu5.org/sona/polling_status.php?stu_status=1";
     String result_to_print="SECTION   VOTED   NOT VOTED";
     SharedPreferences sp;
     @Override
@@ -27,11 +27,17 @@ TextView status;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
         status=(TextView)findViewById(R.id.statuss);
+        dept_post=(TextView)findViewById(R.id.dept_post);
+
         sp =getSharedPreferences("admin",MODE_PRIVATE);
         reg_no=sp.getString("reg_no","reg_no");
-        post=sp.getString("post_st_end","reg_no");
+        post=sp.getString("post_st_end","post");
+        dept=sp.getString("dept","dept");
+
+        dept_post.setText(dept+"  "+post+" election status");
         url_status+="&reg_no="+reg_no+"&post="+post;
         get_status(url_status);
+
     }
 
     private void get_status(String url) {
@@ -62,7 +68,7 @@ TextView status;
             try {
                 json = array.getJSONObject(i);
                 int j=i+1;
-                result_to_print+= "\n" +"   "+ json.getString("section")+"      " + json.getInt("voted") + "      " + json.getInt("notvoted");
+                result_to_print+= "\n" +"   "+ json.getString("section")+"                " + json.getInt("voted") + "                   " + json.getInt("notvoted");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -59,13 +59,13 @@ SharedPreferences sp;
 
     public void login(View view) {
         //pb.setVisibility(View.VISIBLE);
-        login.setEnabled(false);
+
          sphone= ephone.getText().toString().trim();
          smail=email.getText().toString().trim();
          sreg_no=ereg_no.getText().toString().trim();
 
 
-        /*if (sphone.isEmpty() || sphone.length() < 10) {
+        if (sphone.isEmpty() || sphone.length() < 10) {
             ephone.setError("Valid number is required");
             ephone.requestFocus();
             return;
@@ -80,8 +80,8 @@ SharedPreferences sp;
             email.requestFocus();
             return;
         }
-        else */if(sphone.length()==1) {
-           // String phoneNumber = "+91" + number;
+        else if(sphone.length()==10) {
+            login.setEnabled(false);
             checkdb();
 
         }
@@ -123,6 +123,7 @@ SharedPreferences sp;
                     else {
 
                         Toast.makeText(getApplicationContext(),""+message.toString(),Toast.LENGTH_LONG).show();
+                        login.setEnabled(true);
                         return;
                     }
 
@@ -138,6 +139,7 @@ SharedPreferences sp;
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                login.setEnabled(true);
                 Toast.makeText(getApplicationContext(),""+error.toString(),Toast.LENGTH_LONG).show();
             }
         });

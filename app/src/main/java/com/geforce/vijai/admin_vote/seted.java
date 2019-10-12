@@ -33,11 +33,13 @@ SharedPreferences sp;
         reply=(TextView)findViewById(R.id.reply_msg);
         sp=getSharedPreferences("admin",MODE_PRIVATE);
         reg_no=sp.getString("reg_no","reg_no");
-        Intent intent=getIntent();
         //post=intent.getStringExtra("post");
         post=sp.getString("post_st_end","post");
         Log.d("seted post",sp.getString("post_st_end","post"));
         Log.d("seted vari",post);
+
+        Intent in=getIntent();
+        reply.setText(in.getStringExtra("reply"));
     }
 
     public void end_polling(View view) {
@@ -45,11 +47,10 @@ SharedPreferences sp;
         String data="?reg_no="+reg_no+"&post="+post+"&start=0&end=1";
         url+=data;
         Log.i("url_end",url);
-        submitdb(url);
-        Intent i =new Intent(getApplicationContext(),result.class);
+        //submitdb(url);
+        Intent i =new Intent(getApplicationContext(),otp_verify.class);
+        i.putExtra("url",url);
         startActivity(i);
-        finish();
-
     }
 
     public void start_polling(View view) {
@@ -57,48 +58,13 @@ SharedPreferences sp;
         String data="?reg_no="+reg_no+"&post="+post+"&start=1&end=0";
         url+=data;
         Log.i("url_start",url);
-        submitdb(url);
+        Intent i =new Intent(getApplicationContext(),otp_verify.class);
+        i.putExtra("url",url);
+        startActivity(i);
+
     }
 
-    private void submitdb(String url) {
-        Log.i("url_timer",url);
 
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-
-                    JSONObject jsonObject=new JSONObject(response);
-                    String message=jsonObject.getString("message");
-                    boolean error=jsonObject.getBoolean("error");
-                    if(!error){
-                        reply.setText(message);
-
-                    }
-                    else {
-
-                        Toast.makeText(getApplicationContext(),"error in timers",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),"error"+e.toString(),Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),""+error.toString(),Toast.LENGTH_LONG).show();
-            }
-        });
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-       // url="http://vijai1.eu5.org/sona/timer.php";
-    }
 
 
 }

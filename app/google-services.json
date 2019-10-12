@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "692812873365",
+    "firebase_url": "https://adminvote-34e9a.firebaseio.com",
+    "project_id": "adminvote-34e9a",
+    "storage_bucket": "adminvote-34e9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692812873365:android:b13618c34d551ceb9ee59c",
+        "android_client_info": {
+          "package_name": "com.geforce.vijai.admin_vote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692812873365-ljjvv3c7moh06fhrhv6idaiij7tq2ie8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.geforce.vijai.admin_vote",
+            "certificate_hash": "5d29f7f171a8737f978c15c470023f5c1549fc3e"
+          }
+        },
+        {
+          "client_id": "692812873365-a7r997h61g94tsffmn83p312cdclm3h8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSebW0MU92k1eMgWfPj9YoXbV5_XV1-Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692812873365-a7r997h61g94tsffmn83p312cdclm3h8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
